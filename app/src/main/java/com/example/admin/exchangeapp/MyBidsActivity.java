@@ -21,6 +21,9 @@ public class MyBidsActivity extends AppCompatActivity implements MyServicesAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_services);
 
+        setTitle("My Bids");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mServices = new ArrayList<>();
         mServices.add(new Service("Some Service", "Some description", ""));
         mServices.add(new Service("Some Service", "Some description", ""));

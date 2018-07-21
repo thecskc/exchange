@@ -1,11 +1,8 @@
 package com.example.admin.exchangeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -32,9 +29,21 @@ public class MenuActivity extends AppCompatActivity {
 
         ResideMenuItem servicesItem = new ResideMenuItem(this,icon[1],titles[1]);
         resideMenu.addMenuItem(servicesItem, ResideMenu.DIRECTION_LEFT);
+        servicesItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuActivity.this, MyServicesActivity.class));
+            }
+        });
 
         ResideMenuItem bidsItem = new ResideMenuItem(this,icon[0],titles[0]);
         resideMenu.addMenuItem(bidsItem, ResideMenu.DIRECTION_LEFT);
+        bidsItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuActivity.this, MyBidsActivity.class));
+            }
+        });
 
 
 

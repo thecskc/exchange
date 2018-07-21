@@ -21,6 +21,9 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_services);
 
+        setTitle("My Services");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mServices = new ArrayList<>();
         mServices.add(new Service("Some Service", "Some description", ""));
         mServices.add(new Service("Some Service", "Some description", ""));
