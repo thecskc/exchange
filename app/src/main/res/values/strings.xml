@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ExchangeApp</string>
     <string name="facebook_application_id" translatable="false">1741647702537873</string>
+    <string name="title_activity_menu">MenuActivity</string>
     <!-- Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs. -->
     <!--<string name="facebook_login_protocol_scheme" translatable="false">fbAPP_ID</string>-->
 </resources>
