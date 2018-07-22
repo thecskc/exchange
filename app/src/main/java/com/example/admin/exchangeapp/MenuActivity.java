@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
@@ -12,12 +13,15 @@ import com.special.ResideMenu.ResideMenuItem;
 public class MenuActivity extends AppCompatActivity {
 
     ResideMenu resideMenu;
+    private Button productBtn, serviceBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        productBtn = findViewById(R.id.product_btn);
+        serviceBtn = findViewById(R.id.service_btn);
 
         resideMenu = new ResideMenu(MenuActivity.this);
         resideMenu.attachToActivity(MenuActivity.this);
@@ -45,6 +49,22 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuActivity.this, MyBidsActivity.class));
             }
         });
+
+        productBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuActivity.this, ProductActivity.class));
+            }
+        });
+
+        serviceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuActivity.this, RequestServiceActivity.class));
+            }
+        });
+
+
 
 
 

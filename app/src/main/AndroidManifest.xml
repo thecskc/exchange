@@ -16,14 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyServicesActivity"
-            android:parentActivityName=".MenuActivity"></activity>
-        <activity android:name=".MyBidsActivity"
-            android:parentActivityName=".MenuActivity"></activity>
+        <activity
+            android:name=".MyServicesActivity"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".MyBidsActivity"
+            android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ProductActivity" />
+        <activity android:name=".RequestServiceActivity"></activity>
     </application>
 
 </manifest>
