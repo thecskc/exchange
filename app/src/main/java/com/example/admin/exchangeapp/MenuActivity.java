@@ -21,6 +21,7 @@ public class MenuActivity extends AppCompatActivity {
 
         resideMenu = new ResideMenu(MenuActivity.this);
         resideMenu.attachToActivity(MenuActivity.this);
+        resideMenu.setBackground(R.drawable.bg1);
 
         // create menu items;
         String titles[] = { "Bids", "Services" };

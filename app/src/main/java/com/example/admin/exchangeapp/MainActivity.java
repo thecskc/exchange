@@ -19,22 +19,24 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     // Choose authentication providers
     List<AuthUI.IdpConfig> providers = Arrays.asList(
+            new AuthUI.IdpConfig.GoogleBuilder().build(),
+
             new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.FacebookBuilder().build());
+            new AuthUI.IdpConfig.FacebookBuilder().build()
+
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(new Intent(MainActivity.this, MenuActivity.class));
-
         // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setAvailableProviders(providers)
-//                        .build(),
-//                RC_SIGN_IN);
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                RC_SIGN_IN);
     }
 
     @Override
@@ -46,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
-                //startActivity(SignedInActivity.createIntent(this, response));
-                //finish();
+
                 Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                finish();
             } else {
                 // Sign in failed
                 if (response == null) {
