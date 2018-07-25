@@ -46,7 +46,7 @@
                     android:drawableTint="#FF4081"
                     android:singleLine="true"
                     android:hint="Title"
-                    android:inputType="textEmailAddress" />
+                    android:id="@+id/sell_product_title"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -59,7 +59,8 @@
                     android:layout_marginTop="16dp"
                     android:singleLine="true"
                     android:drawableTint="#FF4081"
-                    android:hint="Description"/>
+                    android:hint="Description"
+                    android:id="@+id/sell_product_description"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -72,10 +73,9 @@
                     android:singleLine="true"
                     android:drawableTint="#FF4081"
                     android:hint="Base Price"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberDecimal"
+                    android:id="@+id/sell_product_base_price"/>
             </android.support.design.widget.TextInputLayout>
-
-
 
 
             <Button
@@ -86,7 +86,8 @@
                 android:text="Submit"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:id="@+id/sell_product_button"/>
         </LinearLayout>
     </RelativeLayout>
 
