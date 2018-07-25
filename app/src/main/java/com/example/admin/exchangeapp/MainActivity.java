@@ -9,11 +9,15 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    FirebaseUser mFirebaseUser;
 
     private static final int RC_SIGN_IN = 123;
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -30,14 +34,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setAvailableProviders(providers)
-//                        .build(),
-//                RC_SIGN_IN);
-        startActivity(new Intent(MainActivity.this, MenuActivity.class));
+         //Create and launch sign-in intent
+
+            mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // User is logged in
+            startActivity(new Intent(MainActivity.this, MenuActivity.class));
+        }
+            else{
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(providers)
+                                .build(),
+                        RC_SIGN_IN);
+            }
+
+
+
 
 
     }
@@ -54,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 finish();
             } else {
                 // Sign in failed
