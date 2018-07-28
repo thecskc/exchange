@@ -96,12 +96,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        ResideMenuItem profileItem = new ResideMenuItem(this,icon[0],titles[0]);
+        ResideMenuItem profileItem = new ResideMenuItem(this,icon[0],titles[2]);
         resideMenu.addMenuItem(profileItem, ResideMenu.DIRECTION_LEFT);
-        bidsItem.setOnClickListener(new View.OnClickListener() {
+        profileItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, MyBidsActivity.class));
+                startActivity(new Intent(MenuActivity.this, MyProfileActivity.class));
             }
         });
 

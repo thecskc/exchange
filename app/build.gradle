@@ -27,12 +27,14 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.wdullaer:materialdatetimepicker:3.6.3'
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
-    implementation 'com.google.firebase:firebase-auth:16.0.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'com.google.firebase:firebase-firestore:17.0.3'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
+
 
     implementation 'com.specyci:residemenu:1.6+'
 
@@ -53,7 +55,6 @@ dependencies {
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:4.1.0'
     implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
-
 
 
 }
