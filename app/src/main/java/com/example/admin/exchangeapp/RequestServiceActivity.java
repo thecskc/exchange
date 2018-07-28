@@ -143,10 +143,10 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                             Service service = new Service(title, description, price, category, address, postingUser, city, isFuture);
                             Logger.e("outside - " + city);
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                                    .setTimestampsInSnapshotsEnabled(true)
-                                    .build();
-                            db.setFirestoreSettings(settings);
+//                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+//                                    .setTimestampsInSnapshotsEnabled(true)
+//                                    .build();
+//                            db.setFirestoreSettings(settings);
 
                             db.collection(Config.ServiceCollection.COLLECTION_NAME).add(service)
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

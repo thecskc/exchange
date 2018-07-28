@@ -2,10 +2,11 @@
     <string name="app_name">ExchangeApp</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="facebook_application_id" translatable="false">483193372131087</string>
-     Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs.
+    Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs.
     <string name="facebook_login_protocol_scheme" translatable="false">fb483193372131087</string>
     <string-array name="deadline_spinner_array">
         <item>real-time</item>
         <item>Future date</item>
     </string-array>
+    <string name="title_activity_explore_services">ExploreServices</string>
 </resources>

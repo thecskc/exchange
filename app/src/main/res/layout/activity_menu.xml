@@ -56,7 +56,7 @@
 
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/searchAddress"
                 android:layout_width="371dp"
                 android:layout_height="88dp"
                 android:layout_gravity="center"

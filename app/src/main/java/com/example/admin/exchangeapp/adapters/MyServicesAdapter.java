@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by admin on 7/20/2018.
  */
 
-public class MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.ServicesHolder> {
+public class  MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.ServicesHolder> {
 
     private Context mContext;
     private ArrayList<Service> mServices;
