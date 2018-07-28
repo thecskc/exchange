@@ -5,35 +5,94 @@ package com.example.admin.exchangeapp.data;
  */
 
 public class Service {
-    private String mTitle, mDescription, mImageUrl;
+    private String title, description, price, category, address, postingUser, city;
+    private boolean isFuture;
 
-    public Service(String title, String description, String imageUrl) {
-        mTitle = title;
-        mDescription = description;
-        mImageUrl = imageUrl;
+    public String getPostingUser() {
+        return postingUser;
     }
 
+    public void setPostingUser(String postingUser) {
+        this.postingUser = postingUser;
+    }
+
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Service(String title, String description, String price, String category, String address, String postingUser, String city, boolean isFuture) {
+
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.address = address;
+        this.postingUser = postingUser;
+        this.city = city;
+        this.isFuture = isFuture;
+    }
+
+    public Service(String title, String description, String price) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Service(){
+
+    }
+
+
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.title = title;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public void setDescription(String description) {
-        mDescription = description;
+        this.description = description;
     }
 
-    public String getImageUrl() {
-        return mImageUrl;
+    public String getPrice() {
+        return price;
     }
 
-    public void setImageUrl(String imageUrl) {
-        mImageUrl = imageUrl;
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isFuture() {
+        return isFuture;
+    }
+
+    public void setFuture(boolean future) {
+        isFuture = future;
     }
 }

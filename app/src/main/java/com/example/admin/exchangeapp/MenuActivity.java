@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        productBtn = findViewById(R.id.product_btn);
+
         serviceBtn = findViewById(R.id.service_btn);
 
         resideMenu = new ResideMenu(MenuActivity.this);
@@ -47,13 +47,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MenuActivity.this, MyBidsActivity.class));
-            }
-        });
-
-        productBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, ProductActivity.class));
             }
         });
 

@@ -6,7 +6,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5fb0c9"
+    android:background="#ffff"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
@@ -94,6 +94,21 @@
                     android:drawableTint="#FF4081"
                     android:hint="Category" />
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:singleLine="true"
+                    android:id="@+id/address"
+                    android:drawableTint="#FF4081"
+                    android:hint="Address" />
+            </android.support.design.widget.TextInputLayout>
+
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_marginTop="16dp"
