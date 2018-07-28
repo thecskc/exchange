@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,22 +18,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -134,13 +127,15 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                         try {
                             JSONObject root = new JSONObject(responseString);
                             city = root.getJSONArray("results").getJSONObject(0)
-                                    .getJSONArray("address_components").getJSONObject(3).getString("short_name");
+                                    .getJSONArray("address_components")
+                                    .getJSONObject(3).getString("short_name");
 
                             Logger.e("here - " + city);
 
                             String postingUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                            Service service = new Service(title, description, price, category, address, postingUser, city, isFuture);
+                            Service service = new Service(title, description, price, category,
+                                                address, postingUser, city, isFuture);
                             Logger.e("outside - " + city);
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
 //                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()

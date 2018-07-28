@@ -73,8 +73,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
         // create menu items;
-        String titles[] = { "Bids", "Services" };
-        int icon[] = { R.drawable.ic_android_black_24dp, R.drawable.ic_android_black_24dp};
+        String titles[] = { "Bids", "Services", "My Profile" };
+        int icon[] = { R.drawable.ic_android_black_24dp, R.drawable.ic_android_black_24dp,
+                        R.drawable.ic_android_black_24dp};
 
 
         ResideMenuItem servicesItem = new ResideMenuItem(this,icon[1],titles[1]);
@@ -88,6 +89,15 @@ public class MenuActivity extends AppCompatActivity {
 
         ResideMenuItem bidsItem = new ResideMenuItem(this,icon[0],titles[0]);
         resideMenu.addMenuItem(bidsItem, ResideMenu.DIRECTION_LEFT);
+        bidsItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuActivity.this, MyBidsActivity.class));
+            }
+        });
+
+        ResideMenuItem profileItem = new ResideMenuItem(this,icon[0],titles[0]);
+        resideMenu.addMenuItem(profileItem, ResideMenu.DIRECTION_LEFT);
         bidsItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
