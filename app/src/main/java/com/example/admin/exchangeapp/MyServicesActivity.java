@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.admin.exchangeapp.adapters.MyServicesAdapter;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class MyServicesActivity extends AppCompatActivity implements MyServicesAdapter.OnListItemClickListener {
     private RecyclerView recyclerView;
+    private ProgressBar mProgressBar;
     //private MyServicesAdapter mAdapter;
     private FirestoreRecyclerAdapter mAdapter;
     private FirebaseFirestore db;
@@ -40,7 +43,7 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
-
+        mProgressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -54,6 +57,7 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         mAdapter = new FirestoreRecyclerAdapter<Service, ServiceHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ServiceHolder holder, int position, @NonNull Service model) {
+                mProgressBar.setVisibility(View.INVISIBLE);
                 holder.descTv.setText(model.getDescription());
                 holder.titleTv.setText(model.getTitle());
                 holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
@@ -62,6 +66,7 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
             @NonNull
             @Override
             public ServiceHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                Log.i("My Services", "called");
                 View view = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.item_services, parent, false);
                 return new ServiceHolder(view);
@@ -90,4 +95,5 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         super.onStop();
         mAdapter.stopListening();
     }
+
 }
