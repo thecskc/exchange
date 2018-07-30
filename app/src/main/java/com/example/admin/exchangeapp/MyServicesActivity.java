@@ -40,20 +40,9 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
-//        mServices = new ArrayList<>();
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
-//        mServices.add(new Service("Some Service", "Some description", ""));
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //mAdapter = new MyServicesAdapter(this, mServices, this);
 
         Query myServices =  db.collection(Config.ServiceCollection.COLLECTION_NAME)
                             .whereEqualTo("postingUser", user);

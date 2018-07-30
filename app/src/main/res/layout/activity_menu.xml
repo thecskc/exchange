@@ -18,6 +18,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
+        android:padding="8dp"
         android:background="#ffffff"
         android:text="Request Service"
         android:textColor="@color/fui_linkColor"

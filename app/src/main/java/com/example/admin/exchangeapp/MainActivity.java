@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
          //Create and launch sign-in intent
 
             mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             // User is logged in
             startActivity(new Intent(MainActivity.this, MenuActivity.class));
+            finish();
         }
             else{
                 startActivityForResult(
