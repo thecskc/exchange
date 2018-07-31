@@ -9,4 +9,8 @@
         <item>Future date</item>
     </string-array>
     <string name="title_activity_explore_services">ExploreServices</string>
+    <string name="input">Bid</string>
+    <string name="input_content">What\'s your bid?</string>
+    <string name="input_hint">price</string>
+    <string name="input_prefill">$</string>
 </resources>

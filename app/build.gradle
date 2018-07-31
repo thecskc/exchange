@@ -37,6 +37,7 @@ dependencies {
 
 
     implementation 'com.specyci:residemenu:1.6+'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

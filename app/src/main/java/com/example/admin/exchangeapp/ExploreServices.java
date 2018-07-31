@@ -3,21 +3,18 @@ package com.example.admin.exchangeapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.admin.exchangeapp.data.Service;
 import com.example.admin.exchangeapp.holders.ServiceHolder;
-
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +24,7 @@ public class ExploreServices extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirestoreRecyclerAdapter adapter;
+    private double bidPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +32,7 @@ public class ExploreServices extends AppCompatActivity {
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(ExploreServices.this);
 
-        recyclerView = (RecyclerView)findViewById(R.id.explore_recycler_view);
+        recyclerView = findViewById(R.id.explore_recycler_view);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(false);
 
@@ -58,6 +56,22 @@ public class ExploreServices extends AppCompatActivity {
                 holder.titleTv.setText(model.getTitle());
                 holder.descTv.setText(model.getDescription());
                 holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
+                holder.serviceCv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new MaterialDialog.Builder(getApplicationContext())
+                                .title(R.string.input)
+                                .content(R.string.input_content)
+                                .inputType(InputType.TYPE_CLASS_NUMBER)
+                                .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
+                                    @Override
+                                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                                        // Do something
+                                        bidPrice = Double.parseDouble(input.toString());
+                                    }
+                                }).show();
+                    }
+                });
 
             }
 

@@ -5,6 +5,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="3dp"
+    android:id="@+id/service_cardView"
     android:layout_margin="8dp"
     android:layout_height="wrap_content">
     <LinearLayout
