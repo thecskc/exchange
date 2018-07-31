@@ -59,7 +59,7 @@ public class ExploreServices extends AppCompatActivity {
                 holder.serviceCv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new MaterialDialog.Builder(getApplicationContext())
+                        new MaterialDialog.Builder(ExploreServices.this)
                                 .title(R.string.input)
                                 .content(R.string.input_content)
                                 .inputType(InputType.TYPE_CLASS_NUMBER)
@@ -68,6 +68,8 @@ public class ExploreServices extends AppCompatActivity {
                                     public void onInput(MaterialDialog dialog, CharSequence input) {
                                         // Do something
                                         bidPrice = Double.parseDouble(input.toString());
+                                        Toast.makeText(getApplicationContext(), input.toString(),
+                                                    Toast.LENGTH_SHORT).show();
                                     }
                                 }).show();
                     }

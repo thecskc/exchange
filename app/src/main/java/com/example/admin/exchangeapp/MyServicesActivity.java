@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,12 +60,17 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
                 holder.descTv.setText(model.getDescription());
                 holder.titleTv.setText(model.getTitle());
                 holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
+
+                holder.serviceCv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
             }
 
             @NonNull
             @Override
             public ServiceHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                Log.i("My Services", "called");
                 View view = LayoutInflater.from(parent.getContext())
                                 .inflate(R.layout.item_services, parent, false);
                 return new ServiceHolder(view);
