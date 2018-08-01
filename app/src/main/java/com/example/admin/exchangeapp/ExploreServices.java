@@ -13,10 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.admin.exchangeapp.data.Bid;
 import com.example.admin.exchangeapp.data.Service;
 import com.example.admin.exchangeapp.holders.ServiceHolder;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -25,10 +29,13 @@ public class ExploreServices extends AppCompatActivity {
     RecyclerView recyclerView;
     FirestoreRecyclerAdapter adapter;
     private double bidPrice;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore_services);
+
+        db = FirebaseFirestore.getInstance();
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(ExploreServices.this);
 
@@ -36,7 +43,7 @@ public class ExploreServices extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(false);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Intent getIntent = this.getIntent();
         String cityName = getIntent.getStringExtra("cityName");
@@ -51,8 +58,7 @@ public class ExploreServices extends AppCompatActivity {
 
         adapter = new FirestoreRecyclerAdapter<Service, ServiceHolder>(options) {
             @Override
-            public void onBindViewHolder(@NonNull ServiceHolder holder, int position, @NonNull Service model) {
-
+            public void onBindViewHolder(@NonNull ServiceHolder holder, int position, @NonNull final Service model) {
                 holder.titleTv.setText(model.getTitle());
                 holder.descTv.setText(model.getDescription());
                 holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
@@ -68,8 +74,20 @@ public class ExploreServices extends AppCompatActivity {
                                     public void onInput(MaterialDialog dialog, CharSequence input) {
                                         // Do something
                                         bidPrice = Double.parseDouble(input.toString());
-                                        Toast.makeText(getApplicationContext(), input.toString(),
-                                                    Toast.LENGTH_SHORT).show();
+                                        Bid bid = new Bid(model.getPostingUser(),
+                                                FirebaseAuth.getInstance().getCurrentUser().getUid()
+                                                 ,"43343", bidPrice, null);
+
+                                        db.collection("Bids").add(bid)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        Toast.makeText(getApplicationContext(),
+                                                                "Success", Toast.LENGTH_SHORT)
+                                                                .show();
+                                                    }
+                                                });
+
                                     }
                                 }).show();
                     }

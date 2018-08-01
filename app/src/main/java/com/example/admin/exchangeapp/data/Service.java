@@ -25,7 +25,8 @@ public class Service {
         this.city = city;
     }
 
-    public Service(String title, String description, String price, String category, String address, String postingUser, String city, boolean isFuture) {
+    public Service(String title, String description, String price, String category, String address,
+                   String postingUser, String city, boolean isFuture) {
 
         this.title = title;
         this.description = description;
