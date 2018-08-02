@@ -1,18 +1,24 @@
 package com.example.admin.exchangeapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,12 +32,14 @@ public class MenuActivity extends AppCompatActivity {
     FloatingActionButton serviceBtn;
     EditText searchAddress;
     Button searchButton;
+    ImageView randomImage;
+
+    CoordinatorLayout bg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
 
         serviceBtn = (FloatingActionButton)findViewById(R.id.service_btn);
 
@@ -40,6 +48,13 @@ public class MenuActivity extends AppCompatActivity {
         resideMenu.setBackground(R.drawable.bg1);
         searchAddress = (EditText)findViewById(R.id.searchAddress);
         searchButton = (Button)findViewById(R.id.button3);
+
+        randomImage = (ImageView)findViewById(R.id.imageView3);
+
+        Picasso.get().load(Config.IMAGE_URL).placeholder(R.drawable.logo_resized).fit().centerCrop().into(randomImage);
+
+
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override

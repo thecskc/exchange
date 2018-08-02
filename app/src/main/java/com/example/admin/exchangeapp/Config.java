@@ -29,6 +29,8 @@ public class Config {
     public static final String GEOCODING_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
     public static final String API_KEY = "AIzaSyAURIpaPVHl5rOqRsdopPn-MLR9YzhOva4";
 
+    public static final String IMAGE_URL = "https://source.unsplash.com/1600x900/?city";
+
 
 
 
