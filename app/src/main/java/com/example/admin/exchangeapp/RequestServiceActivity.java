@@ -43,8 +43,7 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
     EditText mPrice;
     @BindView(R.id.category)
     EditText mCategory;
-//    @BindView(R.id.deadline_spinner)
-//    AppCompatSpinner mDeadlineSpinner;
+
     @BindView(R.id.submit_btn)
     Button submitButton;
     @BindView(R.id.service_photo)
@@ -77,7 +76,7 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                 R.array.deadline_spinner_array, android.R.layout.simple_spinner_item);
 
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
 //        mDeadlineSpinner.setAdapter(adapter);
 //
@@ -145,15 +144,13 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(RequestServiceActivity.this,
-                                                    "Success", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RequestServiceActivity.this, "Success", Toast.LENGTH_SHORT).show();
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RequestServiceActivity.this, "Failure"
-                                            ,Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RequestServiceActivity.this, "Failure", Toast.LENGTH_SHORT).show();
 
                                 }
                             });
