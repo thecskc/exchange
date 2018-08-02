@@ -40,12 +40,19 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProductActivity" />
-        <activity android:name=".RequestServiceActivity" />
+        <activity android:name=".RequestServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MenuActivity"/>
         <activity
             android:name=".ExploreServices"
             android:label="@string/title_activity_explore_services"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MyProfileActivity"></activity>
+
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

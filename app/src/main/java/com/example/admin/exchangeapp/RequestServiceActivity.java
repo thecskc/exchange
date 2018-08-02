@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,8 +46,7 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
     EditText mPrice;
     @BindView(R.id.category)
     EditText mCategory;
-    @BindView(R.id.deadline_spinner)
-    AppCompatSpinner mDeadlineSpinner;
+
     @BindView(R.id.submit_btn)
     Button submitButton;
     @BindView(R.id.service_photo)
@@ -62,8 +62,12 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_request_service);
+
         ButterKnife.bind(this);
+
 
         Logger.addLogAdapter(new AndroidLogAdapter());
 
@@ -74,32 +78,9 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
-        String[] spinnerChoices = {"Real Time", "Future Date"};
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.deadline_spinner_array, android.R.layout.simple_spinner_item);
 
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        mDeadlineSpinner.setAdapter(adapter);
 
-        mDeadlineSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
-
-                if (pos == 1) {
-                    dpd.show(getFragmentManager(), "Datepickerdialog");
-                    isFuture = true;
-                } else {
-                    isFuture = false;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        isFuture = true;
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

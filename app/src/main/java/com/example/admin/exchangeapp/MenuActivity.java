@@ -2,6 +2,7 @@ package com.example.admin.exchangeapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,7 +22,8 @@ import cz.msebera.android.httpclient.Header;
 public class MenuActivity extends AppCompatActivity {
 
     ResideMenu resideMenu;
-    private Button productBtn, serviceBtn;
+    private Button productBtn;
+    FloatingActionButton serviceBtn;
     EditText searchAddress;
     Button searchButton;
 
@@ -31,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
-        serviceBtn = findViewById(R.id.service_btn);
+        serviceBtn = (FloatingActionButton)findViewById(R.id.service_btn);
 
         resideMenu = new ResideMenu(MenuActivity.this);
         resideMenu.attachToActivity(MenuActivity.this);
