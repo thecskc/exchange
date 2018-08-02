@@ -20,9 +20,11 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ExploreServices extends AppCompatActivity {
 
@@ -73,20 +75,37 @@ public class ExploreServices extends AppCompatActivity {
                                     @Override
                                     public void onInput(MaterialDialog dialog, CharSequence input) {
                                         // Do something
-                                        bidPrice = Double.parseDouble(input.toString());
-                                        Bid bid = new Bid(model.getPostingUser(),
-                                                FirebaseAuth.getInstance().getCurrentUser().getUid()
-                                                 ,"43343", bidPrice, null);
+                                        bidPrice = Double.parseDouble(input.toString().substring(1,input.length()));
+                                        final String biddingUser = FirebaseAuth.getInstance()
+                                                .getCurrentUser().getUid();
 
-                                        db.collection("Bids").add(bid)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
-                                                        Toast.makeText(getApplicationContext(),
-                                                                "Success", Toast.LENGTH_SHORT)
-                                                                .show();
-                                                    }
-                                                });
+                                        CollectionReference servicesRef = db.collection(Config.ServiceCollection
+                                                .COLLECTION_NAME);
+
+                                        db.collection(Config.ServiceCollection.COLLECTION_NAME)
+                                                .whereEqualTo("postingUser", model.getPostingUser())
+                                                .whereEqualTo("time", model.getDateTime())
+                                                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                String serviceID = queryDocumentSnapshots.getDocuments().get(0).getId();
+                                                Bid bid = new Bid(model.getPostingUser(),
+                                                        biddingUser,serviceID, bidPrice, null);
+
+                                                db.collection("Bids").add(bid)
+                                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                            @Override
+                                                            public void onSuccess(DocumentReference documentReference) {
+                                                                Toast.makeText(getApplicationContext(),
+                                                                        "Success", Toast.LENGTH_SHORT)
+                                                                        .show();
+                                                            }
+                                                        });
+
+                                            }
+                                        });
+
+
 
                                     }
                                 }).show();

@@ -3,9 +3,7 @@ package com.example.admin.exchangeapp;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +43,8 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
     EditText mPrice;
     @BindView(R.id.category)
     EditText mCategory;
-    @BindView(R.id.deadline_spinner)
-    AppCompatSpinner mDeadlineSpinner;
+//    @BindView(R.id.deadline_spinner)
+//    AppCompatSpinner mDeadlineSpinner;
     @BindView(R.id.submit_btn)
     Button submitButton;
     @BindView(R.id.service_photo)
@@ -81,25 +79,25 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        mDeadlineSpinner.setAdapter(adapter);
-
-        mDeadlineSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
-
-                if (pos == 1) {
-                    dpd.show(getFragmentManager(), "Datepickerdialog");
-                    isFuture = true;
-                } else {
-                    isFuture = false;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        mDeadlineSpinner.setAdapter(adapter);
+//
+//        mDeadlineSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
+//
+//                if (pos == 1) {
+//                    dpd.show(getFragmentManager(), "Datepickerdialog");
+//                    isFuture = true;
+//                } else {
+//                    isFuture = false;
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +133,7 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                             String postingUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                             Service service = new Service(title, description, price, category,
-                                                address, postingUser, city, isFuture);
+                                                address, postingUser, city, null);
                             Logger.e("outside - " + city);
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
 //                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -147,13 +145,15 @@ public class RequestServiceActivity extends AppCompatActivity implements DatePic
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(RequestServiceActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RequestServiceActivity.this,
+                                                    "Success", Toast.LENGTH_SHORT).show();
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RequestServiceActivity.this, "Failure", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RequestServiceActivity.this, "Failure"
+                                            ,Toast.LENGTH_SHORT).show();
 
                                 }
                             });

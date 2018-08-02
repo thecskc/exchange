@@ -12,14 +12,14 @@ public class Bid {
     private String postingUser, biddingUser, serviceID;
     double price;
     @ServerTimestamp
-    private Date time;
+    private Date dateTime;
 
     public Bid(String postingUser, String biddingUser, String serviceID, double price, Date time) {
         this.postingUser = postingUser;
         this.biddingUser = biddingUser;
         this.serviceID = serviceID;
         this.price = price;
-        this.time = time;
+        this.dateTime = time;
     }
 
     public String getPostingUser() {
@@ -52,5 +52,9 @@ public class Bid {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
     }
 }

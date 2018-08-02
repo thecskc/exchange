@@ -49,6 +49,7 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         Query myServices =  db.collection(Config.ServiceCollection.COLLECTION_NAME)
                             .whereEqualTo("postingUser", user);
 
+
         FirestoreRecyclerOptions<Service> options = new FirestoreRecyclerOptions.Builder<Service>()
                 .setQuery(myServices,Service.class)
                 .build();

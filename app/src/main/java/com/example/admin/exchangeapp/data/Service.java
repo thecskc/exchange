@@ -1,12 +1,19 @@
 package com.example.admin.exchangeapp.data;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+
 /**
  * Created by admin on 7/20/2018.
  */
 
 public class Service {
     private String title, description, price, category, address, postingUser, city;
-    private boolean isFuture;
+   // private boolean isFuture;
+    @ServerTimestamp
+    private Date dateTime;
+
 
     public String getPostingUser() {
         return postingUser;
@@ -26,7 +33,7 @@ public class Service {
     }
 
     public Service(String title, String description, String price, String category, String address,
-                   String postingUser, String city, boolean isFuture) {
+                   String postingUser, String city, Date time) {
 
         this.title = title;
         this.description = description;
@@ -35,7 +42,8 @@ public class Service {
         this.address = address;
         this.postingUser = postingUser;
         this.city = city;
-        this.isFuture = isFuture;
+        this.dateTime = time;
+
     }
 
     public Service(String title, String description, String price) {
@@ -89,11 +97,15 @@ public class Service {
         this.address = address;
     }
 
-    public boolean isFuture() {
-        return isFuture;
-    }
+//    public boolean isFuture() {
+//        return isFuture;
+//    }
+//
+//    public void setFuture(boolean future) {
+//        isFuture = future;
+//    }
 
-    public void setFuture(boolean future) {
-        isFuture = future;
+    public Date getDateTime() {
+        return dateTime;
     }
 }

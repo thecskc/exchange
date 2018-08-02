@@ -109,13 +109,13 @@
                     android:hint="Address" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatSpinner
-                android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/deadline_spinner">
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/deadline_spinner">-->
 
-            </android.support.v7.widget.AppCompatSpinner>
+            <!--</android.support.v7.widget.AppCompatSpinner>-->
 
             <Button
                 android:layout_width="match_parent"
