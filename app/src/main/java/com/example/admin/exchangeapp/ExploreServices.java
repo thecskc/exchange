@@ -6,10 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -28,6 +32,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class ExploreServices extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    Toolbar toolbar;
+    ProgressBar mProgressBar;
     FirestoreRecyclerAdapter adapter;
     private double bidPrice;
     private FirebaseFirestore db;
@@ -35,13 +41,22 @@ public class ExploreServices extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explore_services);
+        setContentView(R.layout.activity_scrolling);
+
+        //change id to Your id
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mProgressBar = findViewById(R.id.progress_bar);
+
+        //this line shows back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         db = FirebaseFirestore.getInstance();
 
         final GridLayoutManager layoutManager = new GridLayoutManager(ExploreServices.this,GridLayoutManager.VERTICAL);
 
-        recyclerView = findViewById(R.id.explore_recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(false);
 
@@ -61,6 +76,7 @@ public class ExploreServices extends AppCompatActivity {
         adapter = new FirestoreRecyclerAdapter<Service, ServiceHolder>(options) {
             @Override
             public void onBindViewHolder(@NonNull ServiceHolder holder, int position, @NonNull final Service model) {
+                mProgressBar.setVisibility(View.INVISIBLE);
                 holder.titleTv.setText(model.getTitle());
                 holder.descTv.setText(model.getDescription());
                 final String setPrice = "$"+model.getPrice();
@@ -143,5 +159,16 @@ public class ExploreServices extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        return  true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

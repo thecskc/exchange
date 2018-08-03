@@ -51,8 +51,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ExploreServices"
-            android:label="@string/title_activity_explore_services"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Services Near You"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MenuActivity"/>
         <activity android:name=".MyProfileActivity" />
 
         <meta-data
