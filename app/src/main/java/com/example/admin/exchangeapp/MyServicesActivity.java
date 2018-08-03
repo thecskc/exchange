@@ -5,7 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -20,25 +23,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-
 public class MyServicesActivity extends AppCompatActivity implements MyServicesAdapter.OnListItemClickListener {
     private RecyclerView recyclerView;
     private ProgressBar mProgressBar;
+    private Toolbar toolbar;
     //private MyServicesAdapter mAdapter;
     private FirestoreRecyclerAdapter mAdapter;
     private FirebaseFirestore db;
     private String user;
 
-    private ArrayList<Service> mServices;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_services);
+        setContentView(R.layout.activity_scrolling);
 
-        setTitle("My Services");
+        //change id to Your id
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //this line shows back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
@@ -101,4 +105,14 @@ public class MyServicesActivity extends AppCompatActivity implements MyServicesA
         mAdapter.stopListening();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }

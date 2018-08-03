@@ -18,8 +18,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -31,28 +32,37 @@
         </activity>
         <activity
             android:name=".MyServicesActivity"
+            android:label="My Services"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".MyBidsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="My Bids"
             android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProductActivity" />
-        <activity android:name=".RequestServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MenuActivity"/>
+        <activity
+            android:name=".RequestServiceActivity"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ExploreServices"
             android:label="@string/title_activity_explore_services"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MyProfileActivity"></activity>
-
+        <activity android:name=".MyProfileActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
