@@ -1,12 +1,9 @@
 package com.example.admin.exchangeapp;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +16,6 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,11 +91,11 @@ public class MenuActivity extends AppCompatActivity {
 
         // create menu items;
         String titles[] = { "Bids", "Services", "My Profile" };
-        int icon[] = { R.drawable.ic_android_black_24dp, R.drawable.ic_android_black_24dp,
-                        R.drawable.ic_android_black_24dp};
+        int icon[] = { R.drawable.ic_hand_shake, R.drawable.ic_auction,
+                        R.drawable.ic_man_user};
 
 
-        ResideMenuItem servicesItem = new ResideMenuItem(this,icon[1],titles[1]);
+        ResideMenuItem servicesItem = new ResideMenuItem(this,icon[0],titles[1]);
         resideMenu.addMenuItem(servicesItem, ResideMenu.DIRECTION_LEFT);
         servicesItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +104,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        ResideMenuItem bidsItem = new ResideMenuItem(this,icon[0],titles[0]);
+        ResideMenuItem bidsItem = new ResideMenuItem(this,icon[1],titles[0]);
         resideMenu.addMenuItem(bidsItem, ResideMenu.DIRECTION_LEFT);
         bidsItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +113,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        ResideMenuItem profileItem = new ResideMenuItem(this,icon[0],titles[2]);
+        ResideMenuItem profileItem = new ResideMenuItem(this,icon[2],titles[2]);
         resideMenu.addMenuItem(profileItem, ResideMenu.DIRECTION_LEFT);
         profileItem.setOnClickListener(new View.OnClickListener() {
             @Override
