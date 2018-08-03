@@ -4,5 +4,8 @@
         <item>@font/abril_fatface</item>
         <item>@font/bevan</item>
         <item>@font/cardo_bold</item>
+        <item>@font/lemonada_semibold</item>
+        <item>@font/roboto</item>
+        <item>@font/roboto_italic</item>
     </array>
 </resources>

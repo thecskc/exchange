@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,11 +46,14 @@ public class MenuActivity extends AppCompatActivity {
 
         resideMenu = new ResideMenu(MenuActivity.this);
         resideMenu.attachToActivity(MenuActivity.this);
-        resideMenu.setBackground(R.drawable.bg1);
+        resideMenu.setBackground(R.drawable.unsplashseagradient);
         searchAddress = (EditText)findViewById(R.id.searchAddress);
         searchButton = (Button)findViewById(R.id.button3);
 
         randomImage = (ImageView)findViewById(R.id.imageView3);
+        //randomImage.setColorFilter(ContextCompat.getColor(this, R.color.startblue), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+
 
         Picasso.get().load(Config.IMAGE_URL).placeholder(R.drawable.logo_resized).fit().centerCrop().into(randomImage);
 
