@@ -77,7 +77,8 @@ public class  MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.S
         public void onListItemClick(int position);
     }
 
-    public void addItem(Service service){
+    public void addItem(Service service, String price){
+        service.setPrice(price);
         mServices.add(service);
         notifyDataSetChanged();
     }

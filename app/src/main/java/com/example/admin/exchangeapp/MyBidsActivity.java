@@ -31,6 +31,8 @@ public class MyBidsActivity extends AppCompatActivity implements MyServicesAdapt
     private FirebaseFirestore db;
     private String user;
     private ArrayList<String> serviceIds;
+    private ArrayList<String> biddingPrices;
+    private double biddingPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class MyBidsActivity extends AppCompatActivity implements MyServicesAdapt
 
 
         serviceIds = new ArrayList<>();
+        biddingPrices = new ArrayList<>();
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
@@ -67,9 +70,12 @@ public class MyBidsActivity extends AppCompatActivity implements MyServicesAdapt
 
                 for(QueryDocumentSnapshot snapshot: queryDocumentSnapshots){
                     serviceIds.add(snapshot.get("serviceID").toString());
+                    biddingPrice = Double.parseDouble(snapshot.get("price").toString());
+                    biddingPrices.add(String.valueOf(biddingPrice));
                 }
 
                 for (int i=0; i<serviceIds.size(); i++){
+                    final int finalI = i;
                     db.collection(Config.ServiceCollection.COLLECTION_NAME).document(serviceIds.get(i))
                             .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
@@ -77,7 +83,7 @@ public class MyBidsActivity extends AppCompatActivity implements MyServicesAdapt
                             mProgressBar.setVisibility(View.INVISIBLE);
                             Service service = documentSnapshot.toObject(Service.class);
                             Log.d("Bids", "onSuccess: "+service.getTitle());
-                            mAdapter.addItem(service);
+                            mAdapter.addItem(service, biddingPrices.get(finalI));
                         }
                     });
                 }
