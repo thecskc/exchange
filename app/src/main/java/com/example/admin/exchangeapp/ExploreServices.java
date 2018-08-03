@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ public class ExploreServices extends AppCompatActivity {
     FirestoreRecyclerAdapter adapter;
     private double bidPrice;
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class ExploreServices extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(ExploreServices.this);
+        final GridLayoutManager layoutManager = new GridLayoutManager(ExploreServices.this,GridLayoutManager.VERTICAL);
 
         recyclerView = findViewById(R.id.explore_recycler_view);
         recyclerView.setLayoutManager(layoutManager);
@@ -49,13 +52,13 @@ public class ExploreServices extends AppCompatActivity {
 
         Intent getIntent = this.getIntent();
         String cityName = getIntent.getStringExtra("cityName");
-        Toast.makeText(ExploreServices.this,cityName,Toast.LENGTH_SHORT).show();
+        Toast.makeText(ExploreServices.this, cityName, Toast.LENGTH_SHORT).show();
 
 
         Query servicesInCity = db.collection(Config.ServiceCollection.COLLECTION_NAME).whereEqualTo("city", cityName);
 
         FirestoreRecyclerOptions<Service> options = new FirestoreRecyclerOptions.Builder<Service>()
-                .setQuery(servicesInCity,Service.class)
+                .setQuery(servicesInCity, Service.class)
                 .build();
 
         adapter = new FirestoreRecyclerAdapter<Service, ServiceHolder>(options) {
@@ -63,7 +66,9 @@ public class ExploreServices extends AppCompatActivity {
             public void onBindViewHolder(@NonNull ServiceHolder holder, int position, @NonNull final Service model) {
                 holder.titleTv.setText(model.getTitle());
                 holder.descTv.setText(model.getDescription());
-                holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
+                final String setPrice = "$"+model.getPrice();
+                holder.priceTV.setText(setPrice);
+                holder.serviceIv.setVisibility(View.GONE);
                 holder.serviceCv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -75,7 +80,7 @@ public class ExploreServices extends AppCompatActivity {
                                     @Override
                                     public void onInput(MaterialDialog dialog, CharSequence input) {
                                         // Do something
-                                        bidPrice = Double.parseDouble(input.toString().substring(1,input.length()));
+                                        bidPrice = Double.parseDouble(input.toString().substring(1, input.length()));
                                         final String biddingUser = FirebaseAuth.getInstance()
                                                 .getCurrentUser().getUid();
 
@@ -90,7 +95,7 @@ public class ExploreServices extends AppCompatActivity {
                                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                                 String serviceID = queryDocumentSnapshots.getDocuments().get(0).getId();
                                                 Bid bid = new Bid(model.getPostingUser(),
-                                                        biddingUser,serviceID, bidPrice, null);
+                                                        biddingUser, serviceID, bidPrice, null);
 
                                                 db.collection("Bids").add(bid)
                                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -104,7 +109,6 @@ public class ExploreServices extends AppCompatActivity {
 
                                             }
                                         });
-
 
 
                                     }
@@ -126,12 +130,6 @@ public class ExploreServices extends AppCompatActivity {
         };
 
         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
 
 
     }

@@ -8,40 +8,49 @@
     android:id="@+id/service_cardView"
     android:layout_margin="8dp"
     android:layout_height="wrap_content">
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="horizontal">
-    <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/image_view"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="8dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="132dp"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
-            tools:text="Title"
-            android:layout_alignParentTop="true"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/desc"
-            android:layout_alignParentTop="true"
-            android:textSize="16sp"
-            tools:text="Description"
-            />
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textSize="16sp"
+                tools:text="Description" />
+
+            <TextView
+                android:id="@+id/priceTV"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:text="Price"
+                android:textColor="@color/fui_linkColor" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </android.support.v7.widget.CardView>
 

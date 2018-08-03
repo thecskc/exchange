@@ -41,6 +41,8 @@ public class  MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.S
         holder.titleTv.setText(mServices.get(position).getTitle());
         holder.descTv.setText(mServices.get(position).getDescription());
         holder.serviceIv.setImageResource(R.drawable.ic_android_black_24dp);
+        holder.serviceIv.setVisibility(View.GONE);
+
 
 
     }
@@ -59,6 +61,7 @@ public class  MyServicesAdapter extends RecyclerView.Adapter<MyServicesAdapter.S
             titleTv = itemView.findViewById(R.id.title);
             descTv = itemView.findViewById(R.id.desc);
             serviceIv = itemView.findViewById(R.id.image_view);
+
         }
 
         @Override

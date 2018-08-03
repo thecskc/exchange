@@ -12,6 +12,7 @@ public class ServiceHolder extends RecyclerView.ViewHolder{
     public TextView titleTv, descTv;
     public ImageView serviceIv;
     public CardView serviceCv;
+    public TextView priceTV;
 
 
     public ServiceHolder(View itemView) {
@@ -20,5 +21,6 @@ public class ServiceHolder extends RecyclerView.ViewHolder{
         descTv = itemView.findViewById(R.id.desc);
         serviceIv = itemView.findViewById(R.id.image_view);
         serviceCv = itemView.findViewById(R.id.service_cardView);
+        priceTV = itemView.findViewById(R.id.priceTV);
     }
 }
